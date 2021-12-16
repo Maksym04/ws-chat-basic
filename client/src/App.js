@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useLayoutEffect } from 'react';
-import { bindActionCreators } from 'redux';
 import { Formik, Form, Field } from 'formik';
+import { bindActionCreators } from 'redux';
 import './App.css';
 import * as chatActionCreators from './actions/actionCreators';
 
@@ -27,11 +27,13 @@ function App () {
           </li>
         ))}
       </ul>
+      {error && <div>ERROR</div>}
+      {isFetching && <div>Loading...</div>}
       <Formik
         initialValues={{ author: '', body: '' }}
         onSubmit={(values, formikBag) => {
           // экшн на создание сообщения
-          chatActionCreators(values);
+          createMessageAction(values);
           formikBag.resetForm();
         }}
       >
