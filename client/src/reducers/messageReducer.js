@@ -5,7 +5,7 @@ const initialState = {
   messages: [],
   isFetching: false,
   error: null,
-  limit: 40,
+  limit: 20,
 };
 
 const messageReducer = (state = initialState, action) => {
@@ -37,8 +37,8 @@ const messageReducer = (state = initialState, action) => {
 
       const newMessages = [...messages, newMessage];
 
-      if (messages.length >= limit) {
-        messages.shift();
+      if (messages.length > limit) {
+        newMessages.shift();
       }
 
       return { ...state, messages: newMessages, isFetching: false };
